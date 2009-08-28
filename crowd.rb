@@ -9,6 +9,7 @@ class Crowdsource
     load_leaderboard
     parse_leaders
     #fetch_results
+    cleanup_leaders
     crunchit
   end
 
@@ -26,6 +27,19 @@ class Crowdsource
       percent = tr[2].inner_html
       link = tr[3].css('a').attr('href')
       @leaders.push [ entry, correct, percent, link ]
+    end
+  end
+
+  def cleanup_leaders
+    #size = @leaders.size
+    #print "size: #{size}\n"
+    (40.downto 0).each do |i|
+      f = filename(@leaders[i][0])
+      lines = `wc -l #{f}`.split(' ')[0].to_i
+      if lines != 4788
+        print "Removing entry by #{@leaders[i][0]}\n" 
+        @leaders.delete_at(i)
+      end
     end
   end
 
