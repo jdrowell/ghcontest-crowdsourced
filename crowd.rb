@@ -9,7 +9,7 @@ class Crowdsource
     load_leaderboard
     parse_leaders
     #fetch_results
-    cleanup_leaders
+    #cleanup_leaders
     crunchit
   end
 
@@ -69,9 +69,9 @@ class Crowdsource
       print "  fetching #{url}\n"
       begin
         results = open(url).read
-      rescue
-        print "Whatever HTTP error\n"
-        results = ''
+      #rescue
+      #  print "Whatever HTTP error\n"
+      #  results = ''
       end
       File.open(filename(leader[0]), 'w+').write(results)
     end
