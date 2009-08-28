@@ -84,7 +84,7 @@ class Crowdsource
   def crunchit
     @user_repos = {}
     weight = 1000.0
-    @leaders[0..20].each do |leader|
+    @leaders[0..30].each do |leader|
       weight = weight / 1.1
       print "\n#{leader[0]}\n"
       f = File.open(filename(leader[0])).read
